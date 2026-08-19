@@ -17,6 +17,7 @@
       --text-main: #0f172a;
       --text-muted: #64748b;
       --border: #e2e8f0;
+      --pro-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
     }
 
     * {
@@ -32,9 +33,7 @@
       line-height: 1.6;
     }
 
-    /* ---------------------------------------------------- */
-    /* STYLES DE L'ÉCRAN DE CHARGEMENT                      */
-    /* ---------------------------------------------------- */
+    /* ÉCRAN DE CHARGEMENT */
     #loader-wrapper {
       position: fixed;
       top: 0;
@@ -91,9 +90,7 @@
       50% { transform: scale(1.05); opacity: 0.85; }
     }
 
-    /* ---------------------------------------------------- */
-    /* STYLES GÉNÉRAUX DE LA PAGE                           */
-    /* ---------------------------------------------------- */
+    /* EN-TÊTE */
     header {
       display: flex;
       justify-content: space-between;
@@ -123,6 +120,23 @@
       text-transform: uppercase;
     }
 
+    .nav-pro-link {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      font-size: 0.85rem;
+      transition: all 0.2s ease;
+    }
+
+    .nav-pro-link:hover {
+      background-color: var(--accent);
+      color: #ffffff;
+    }
+
+    /* HERO */
     .hero {
       text-align: center;
       padding: 60px 20px 40px 20px;
@@ -168,6 +182,7 @@
       background-color: var(--accent-hover);
     }
 
+    /* GALERIE APERÇUS */
     .gallery-container {
       max-width: 1000px;
       margin: 0 auto 60px auto;
@@ -214,6 +229,7 @@
       display: block;
     }
 
+    /* FONCTIONNALITÉS */
     .features {
       max-width: 1000px;
       margin: 60px auto;
@@ -240,6 +256,55 @@
       font-size: 0.95rem;
     }
 
+    /* SECTION TORREIA PRO */
+    .pro-section {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .pro-card {
+      background: var(--pro-gradient);
+      color: #ffffff;
+      border-radius: 16px;
+      padding: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.3);
+    }
+
+    .pro-info h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .pro-info p {
+      color: #94a3b8;
+      font-size: 1rem;
+      max-width: 600px;
+    }
+
+    .pro-btn {
+      display: inline-block;
+      background-color: var(--accent);
+      color: #ffffff;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background-color 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .pro-btn:hover {
+      background-color: var(--accent-hover);
+    }
+
+    /* FOOTER */
     footer {
       text-align: center;
       padding: 40px;
@@ -264,14 +329,16 @@
       <img src="https://i.postimg.cc/wvGDsjXM/Code-Generated-Image.png" alt="Buildora Studio Logo" class="studio-logo">
       <span class="studio-brand">Buildora Studio</span>
     </div>
-    <div>Torreia v1.0</div>
+    <a href="#pro" class="nav-pro-link">Découvrir Torreia Pro ★</a>
   </header>
 
   <section class="hero">
     <img src="URL_LOGO_TORREIA.png" alt="Torreia Logo" class="app-logo">
     <h1>Torreia</h1>
     <p>Le système d'encaissement et de gestion haute précision conçu pour l'art du café.</p>
-    <a href="#download" class="btn-download">Télécharger pour macOS & Windows</a>
+    
+    <!-- BOUTON TÉLÉCHARGEMENT VERSION GRATUITE / STANDARD -->
+    <a href="URL_TELECHARGEMENT_GRATUIT" class="btn-download" target="_blank" rel="noopener noreferrer">Télécharger Torreia (Standard)</a>
   </section>
 
   <div class="gallery-container">
@@ -313,7 +380,20 @@
     </div>
   </section>
 
-  <footer id="download">
+  <!-- SECTION TORREIA PRO -->
+  <section class="pro-section" id="pro">
+    <div class="pro-card">
+      <div class="pro-info">
+        <h2>Passer à Torreia Pro</h2>
+        <p>Débloquez le multi-établissement, la synchronisation Cloud en temps réel, l'export comptable automatisé et un support technique prioritaire 7j/7.</p>
+      </div>
+      
+      <!-- BOUTON TÉLÉCHARGEMENT / ACHAT VERSION PRO -->
+      <a href="URL_TELECHARGEMENT_PRO" class="pro-btn" target="_blank" rel="noopener noreferrer">Télécharger Torreia Pro — 29€/mois</a>
+    </div>
+  </section>
+
+  <footer>
     <p>&copy; 2026 Buildora Studio. Tous droits réservés.</p>
     <p style="margin-top: 5px;">Torreia est une marque déposée par Buildora Studio.</p>
   </footer>
