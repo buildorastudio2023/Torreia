@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Télécharger Torreia — par Buildora Studio</title>
+  
+  <!-- Favicon Buildora Studio -->
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/wvGDsjXM/Code-Generated-Image.png">
+
+  <style>
+    :root {
+      --bg-main: #ffffff;
+      --bg-card: #f8fafc;
+      --accent: #d97706;
+      --accent-hover: #b45309;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    /* ---------------------------------------------------- */
+    /* STYLES DE L'ÉCRAN DE CHARGEMENT                      */
+    /* ---------------------------------------------------- */
+    #loader-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #ffffff;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    #loader-wrapper.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-logo {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      border-radius: 16px;
+      margin-bottom: 24px;
+      animation: pulse 1.8s infinite ease-in-out;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--border);
+      border-top: 3px solid var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 16px;
+    }
+
+    .loader-text {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.85; }
+    }
+
+    /* ---------------------------------------------------- */
+    /* STYLES GÉNÉRAUX DE LA PAGE                           */
+    /* ---------------------------------------------------- */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 8%;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .studio-logo {
+      height: 36px;
+      width: 36px;
+      object-fit: contain;
+      border-radius: 6px;
+    }
+
+    .studio-brand {
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--text-main);
+      text-transform: uppercase;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px 40px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .app-logo {
+      width: 96px;
+      height: 96px;
+      object-fit: contain;
+      border-radius: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 15px;
+      color: var(--text-main);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: 30px;
+    }
+
+    .btn-download {
+      display: inline-block;
+      background-color: var(--accent);
+      color: #ffffff;
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 0.2s ease;
+      box-shadow: 0 4px 6px -1px rgba(217, 119, 6, 0.2);
+    }
+
+    .btn-download:hover {
+      background-color: var(--accent-hover);
+    }
+
+    .gallery-container {
+      max-width: 1000px;
+      margin: 0 auto 60px auto;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .app-preview {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+    }
+
+    .window-header {
+      background-color: #f1f5f9;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .dot-red { background-color: #ef4444; }
+    .dot-yellow { background-color: #f59e0b; }
+    .dot-green { background-color: #10b981; }
+
+    .image-wrapper {
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .mockup-image {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .features {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .feature-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 25px;
+    }
+
+    .feature-card h3 {
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      background-color: var(--bg-card);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ÉCRAN DE CHARGEMENT -->
+  <div id="loader-wrapper">
+    <img src="https://i.postimg.cc/wvGDsjXM/Code-Generated-Image.png" alt="Buildora Studio Logo" class="loader-logo">
+    <div class="spinner"></div>
+    <div class="loader-text">Chargement de Torreia...</div>
+  </div>
+
+  <header>
+    <div class="logo-container">
+      <img src="https://i.postimg.cc/wvGDsjXM/Code-Generated-Image.png" alt="Buildora Studio Logo" class="studio-logo">
+      <span class="studio-brand">Buildora Studio</span>
+    </div>
+    <div>Torreia v1.0</div>
+  </header>
+
+  <section class="hero">
+    <img src="URL_LOGO_TORREIA.png" alt="Torreia Logo" class="app-logo">
+    <h1>Torreia</h1>
+    <p>Le système d'encaissement et de gestion haute précision conçu pour l'art du café.</p>
+    <a href="#download" class="btn-download">Télécharger pour macOS & Windows</a>
+  </section>
+
+  <div class="gallery-container">
+    <div class="app-preview">
+      <div class="window-header">
+        <div class="dot dot-red"></div>
+        <div class="dot dot-yellow"></div>
+        <div class="dot dot-green"></div>
+      </div>
+      <div class="image-wrapper">
+        <img src="https://i.postimg.cc/5y3c4DcZ/Capture-d-ecran-2026-08-17-154947.png" alt="Aperçu Torreia 1" class="mockup-image">
+      </div>
+    </div>
+
+    <div class="app-preview">
+      <div class="window-header">
+        <div class="dot dot-red"></div>
+        <div class="dot dot-yellow"></div>
+        <div class="dot dot-green"></div>
+      </div>
+      <div class="image-wrapper">
+        <img src="https://i.postimg.cc/QtQwmvM5/Capture-d-ecran-2026-08-17-155126.png" alt="Aperçu Torreia 2" class="mockup-image">
+      </div>
+    </div>
+  </div>
+
+  <section class="features">
+    <div class="feature-card">
+      <h3>Encaissement Ultra-Rapide</h3>
+      <p>Interface tactile optimisée pour réduire le temps de transaction au comptoir lors des heures de pointe.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Gestion des Stocks</h3>
+      <p>Suivi en temps réel des consommables (grains de café, laits, sirops) avec alertes de réapprovisionnement.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Analyses Métier</h3>
+      <p>Tableaux de bord détaillés pour analyser la rentabilité par produit et les heures d'affluence.</p>
+    </div>
+  </section>
+
+  <footer id="download">
+    <p>&copy; 2026 Buildora Studio. Tous droits réservés.</p>
+    <p style="margin-top: 5px;">Torreia est une marque déposée par Buildora Studio.</p>
+  </footer>
+
+  <!-- SCRIPT DE MASQUAGE DU LOADER -->
+  <script>
+    window.addEventListener('load', function() {
+      const loader = document.getElementById('loader-wrapper');
+      loader.classList.add('hidden');
+    });
+  </script>
+
+</body>
+</html>
